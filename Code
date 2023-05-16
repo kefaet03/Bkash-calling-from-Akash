@@ -1,0 +1,173 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void last_digit_six_zero(int First_4_digit,int First_6_digit)
+{
+    int First_4_digit_f = First_4_digit + 1;
+    int Finding_pin = First_4_digit_f * 10, PIN, sum = 0;
+    // cout << Finding_pin << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        sum = Finding_pin + i;
+        long int ans = sum * 16247;
+        // cout << ans << endl;
+        string ans_string = to_string(ans);
+        // cout << ans_string << endl;
+        string first_six = ans_string.substr(0, 6);
+        // cout << first_five << endl;
+        int ans_six2 = stoi(first_six);
+        // cout << ans_five2 << endl;
+        if (ans_six2 == First_6_digit)
+        {
+            PIN = sum;
+            cout << PIN << endl;
+        }
+    }
+}
+
+void six_digit(int First_5_digit, int digit6)
+{
+    int  First_6_digit=(First_5_digit*10)+digit6;
+    float dividing = (1.0 * First_6_digit) / 16247;
+    // cout << dividing << endl;
+    int First_4_digit;
+    if (dividing > 1)
+     {
+        First_4_digit = dividing * 1000;
+    }
+    else
+    {
+        First_4_digit = dividing * 10000;
+    }
+    // cout << First_4_digit << endl;
+    int Finding_pin = First_4_digit * 10, PIN, sum = 0, count = 0;
+    // cout << Finding_pin << endl;
+    cout << "The PIN(s) can be:" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        sum = Finding_pin + i;
+        long int ans = sum * 16247;
+        // cout << ans << endl;
+        string ans_string = to_string(ans);
+        // cout << ans_string << endl;
+        string first_six = ans_string.substr(0, 6);
+        // cout << first_six << endl;
+        int ans_six2 = stoi(first_six);
+        // cout << ans_five2 << endl;
+        if (ans_six2 == First_6_digit)
+        {
+            PIN = sum;
+            cout << PIN << endl;
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        last_digit_six_zero(First_4_digit,First_6_digit);
+    }
+}
+
+void last_or_first_digit_zero(int First_4_digit, int First_5_digit)
+{
+    int First_4_digit_f = First_4_digit + 1;
+    int Finding_pin = First_4_digit_f * 10, PIN, sum = 0,count=0,digit6;
+    // cout << Finding_pin << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        sum = Finding_pin + i;
+        long int ans = sum * 16247;
+        // cout << ans << endl;
+        string ans_string = to_string(ans);
+        // cout << ans_string << endl;
+        string first_five = ans_string.substr(0, 5);
+        // cout << first_five << endl;
+        int ans_five2 = stoi(first_five);
+        // cout << ans_five2 << endl;
+        if (ans_five2 == First_5_digit)
+        {
+            PIN = sum;
+            cout << PIN << endl;
+            count++;
+        }
+        if (count>3)
+        {
+            cin >> digit6;
+            six_digit(First_5_digit,digit6);
+        }
+        
+    }
+}
+
+int main()
+{
+    // Start : Finding when the product of multipication will be 10 digit
+    // int n,count=0;
+    // cin>>n;
+    // long int result= 16247 * n;
+    // the result will be 10 dight if the pin is greater than 61549 (n>61549)
+    // while(1)
+    // {
+    //     if ((result/10)!=0)
+    //     {
+    //         count++;
+    //         result=result/10;
+    //     }
+    //     else
+    //     {
+    //         break;
+    //     }
+    // }
+    // End : the result will be 10 digit if the pin is greater than 61549
+
+    int  First_5_digit;
+    cin >> First_5_digit;
+    // if (First_5_digit<16247)
+    // {
+    //     zero_first(First_5_digit);
+    // }
+    float dividing = (1.0 * First_5_digit) / 16247;
+    // cout << dividing << endl;
+    int First_4_digit;
+    if (dividing >= 1)
+     {
+        First_4_digit = dividing * 1000;
+    }
+    else
+    {
+        First_4_digit = dividing * 10000;
+    }
+    // cout << First_4_digit << endl;
+    int Finding_pin = First_4_digit * 10, PIN, sum = 0, count = 0,digit6;
+    // cout << Finding_pin << endl;
+    cout << "The PIN(s) can be:" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        sum = Finding_pin + i;
+        long int ans = sum * 16247;
+        // cout << ans << endl;
+        string ans_string = to_string(ans);
+        // cout << ans_string << endl;
+        string first_five = ans_string.substr(0, 5);
+        // cout << first_five << endl;
+        int ans_five2 = stoi(first_five);
+        // cout << ans_five2 << endl;
+        if (ans_five2 == First_5_digit)
+        {
+            PIN = sum;
+            cout << PIN << endl;
+            count++;
+        }
+        if (count>3)
+        {
+            cin >> digit6;
+            six_digit(First_5_digit,digit6);
+            break;
+        }
+    }
+    if (count == 0)
+    {
+        last_or_first_digit_zero(First_4_digit, First_5_digit);
+    }
+    
+    // cout << "PIN :" << PIN << " " << "OR" << " " << PIN+1;
+}
