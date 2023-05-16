@@ -1,3 +1,9 @@
+/*
+  Manual:
+  1.At first, the fraud usally ask someone to multiply his/her PIN with 16247(they call it bkash dia code)
+  2.Then they ask for the first 5 digits of the product.(The first input of this code)
+  3.If they find more than 3 answers by the code, they will ask for the 6th digit of the product.(The second input of this code if needed)
+*/  
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -168,6 +174,4 @@ int main()
     {
         last_or_first_digit_zero(First_4_digit, First_5_digit);
     }
-    
-    // cout << "PIN :" << PIN << " " << "OR" << " " << PIN+1;
 }
